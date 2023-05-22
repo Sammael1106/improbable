@@ -54,8 +54,8 @@ export default function Home() {
   })
 
   const [stage, setStage] = useState(1)
-  const texture = useLoader(RGBELoader, 'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/aerodynamics_workshop_1k.hdr')
-  config.background = texture
+  // const texture = useLoader(RGBELoader, 'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/aerodynamics_workshop_1k.hdr')
+  // config.background = texture
   const overlay = useRef()
 
   useEffect(() => {
