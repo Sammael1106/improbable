@@ -343,7 +343,7 @@ function StageFour({ config, setStage }) {
 
   return (
     <group dispose={null}>
-      <Html position={[-6, 0, -6]} className={styles.cell}>
+      <Html position={[-6.3, 0, -6]} className={styles.cell}>
         <h1 className={`${styles.heading} ${styles.alignRight} ${styles.alignBottom}`}>Why Improbable?</h1>
       </Html>
 

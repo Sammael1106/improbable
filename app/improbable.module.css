@@ -56,8 +56,8 @@
   font-style: normal;
 }
 h1.heading {
-  line-height: 26px;
-  font-size: 26px;
+  line-height: 1.2;
+  font-size: 28px;
 }
 h2.heading {
   line-height: 60px;
@@ -77,9 +77,9 @@ h3.heading {
 }
 
 .cell {
-  width: 200px;
+  width: 195px;
   padding: 16px;
-  height: 200px;
+  height: 195px;
   display: flex;
   box-sizing: border-box;
 }
@@ -232,6 +232,10 @@ h3.heading {
 .socialLink {
   margin-top: 24px;
   margin-left: 16px;
+}
+
+.socialLink:hover {
+  opacity: 0.7;
 }
 
 #overlay {
