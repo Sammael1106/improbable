@@ -53,9 +53,63 @@ export default function Home() {
     shadow: '#750d57',
   })
 
+  const [stage, setStage] = useState(1)
+  const texture = useLoader(RGBELoader, 'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/aerodynamics_workshop_1k.hdr')
+  config.background = texture
+  const overlay = useRef()
+
+  useEffect(() => {
+    overlay.current.style.opacity = 1;
+    gsap.to(overlay.current.style, {
+      opacity: 0,
+      duration: 0.5,
+      ease: "power3.out",
+      delay: 0.2
+    })
+  }, [stage])
+
+  const changeStage = (newstage) => {
+    gsap.to(overlay.current.style, {
+      opacity: 1,
+      duration: 0.3,
+      ease: "power3.out",
+      onComplete: () => setStage(newstage)
+    })
+  }
+
   return (
     <>
-     App here
+      <div  className={clsx(stageClass, styles.page)}>
+        <Canvas shadows orthographic camera={{ position: [0, 20, 0], zoom: config.zoom, near: 0, far: 1000 }} gl={{ preserveDrawingBuffer: true }}>
+
+          {stage === 1 && <StageOne config={config} setStage={changeStage} overlay={overlay}/>}
+          {(stage === 2 || stage === 3) && <StageTwo config={config} setStage={changeStage} stage={stage} overlay={overlay}/>}
+          {stage === 4 && <StageFour config={config} setStage={changeStage} overlay={overlay}/>}
+          {stage === 5 && <StageFive config={config} setStage={changeStage} overlay={overlay}/>}
+
+          <Environment resolution={32}>
+            <group rotation={[-Math.PI / 4, -0.3, 0]}>
+              <Lightformer intensity={2} rotation-y={Math.PI / 2} position={[-5, 1, -1]} scale={[10, 2, 1]} />
+              <Lightformer intensity={2} rotation-y={Math.PI / 2} position={[-5, -1, -1]} scale={[10, 2, 1]} />
+              <Lightformer intensity={2} rotation-y={-Math.PI / 2} position={[10, 1, 0]} scale={[20, 2, 1]} />
+              <Lightformer type="ring" intensity={2} rotation-y={Math.PI / 2} position={[-0.1, -1, -5]} scale={10} />
+            </group>
+          </Environment>
+          <AccumulativeShadows frames={100} color={config.shadow} colorBlend={5} toneMapped={true} alphaTest={0.8} opacity={0.8} scale={30} position={[0, 0, 0]}>
+            <RandomizedLight amount={4} radius={15} ambient={0.5} intensity={1} position={[0, 10, -10]} size={15} mapSize={1024} bias={0.0001} />
+          </AccumulativeShadows>
+        </Canvas>
+      </div>
+      <div ref={overlay} className={styles.overlay}></div>
+      <div className={clsx(stageClass, styles.pageIndicator)}>
+        <div className={styles.pageIndicatorProgress} style={{width: `${stage*20}%`}}></div>
+      </div>
     </>
   )
 }
+
+const StageOne = ({ config, setStage }) => {null}
+const StageTwo = ({ config, setStage, stage }) => {null}
+const ScrollableGroups = ({materialPoperties}) => {null}
+const StageFour = ({ config, setStage }) => {null}
+const StageFive = ({ config, setStage, stage }) => {null}
