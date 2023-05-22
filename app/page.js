@@ -77,6 +77,15 @@ export default function Home() {
     })
   }
 
+
+  const stageClass = {
+    [styles.stage1]: stage === 1,
+    [styles.stage2]: stage === 2,
+    [styles.stage3]: stage === 3,
+    [styles.stage4]: stage === 4,
+    [styles.stage5]: stage === 5,
+  }
+
   return (
     <>
       <div  className={clsx(stageClass, styles.page)}>
