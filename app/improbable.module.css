@@ -1,0 +1,244 @@
+@import url("https://use.typekit.net/vaf7fgy.css");
+
+.page {
+  font-family: "ibm-plex-mono", sans-serif;
+  font-style: normal;
+  font-size: 14px;
+  height: 100vh;
+  width: 100vw;
+  font-weight: 300;
+  line-height: 1.8;
+}
+.stage1 {
+  color: #605c6f;
+}
+.stage2,
+.stage3 {
+  color: #70efd0;
+}
+.stage4 {
+  color: #ffffff;
+}
+.stage5 {
+  color: #c0c7ce;
+}
+
+.pageIndicator {
+  position: relative;
+  z-index: 1000000001;
+  width: 300px;
+  height: 5px;
+  margin: -30px auto 0;
+  border-radius: 3px;
+  background-color: #ababb9;
+}
+.pageIndicatorProgress {
+  transition: all ease-in 500ms;
+  border-radius: 3px;
+  height: 100%;
+}
+.stage1.pageIndicator .pageIndicatorProgress {
+  background-color: #bb274d;
+}
+.stage2.pageIndicator .pageIndicatorProgress,
+.stage3.pageIndicator .pageIndicatorProgress {
+  background-color: #15eeb8;
+}
+.stage4.pageIndicator .pageIndicatorProgress {
+  background-color: #ff2525;
+}
+
+
+.heading {
+  /* font-family: 'Bebas Neue', sans-serif; */
+  font-family: "normalidad-wide", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+h1.heading {
+  line-height: 26px;
+  font-size: 26px;
+}
+h2.heading {
+  line-height: 60px;
+  font-size: 60px;
+  color: #fff;
+}
+h3.heading {
+  line-height: 60px;
+  font-size: 50px;
+  color: #fff;
+}
+
+.emph {
+  color: #bb274d;
+  font-weight: 500;
+  /* font-style: italic; */
+}
+
+.cell {
+  width: 216px;
+  padding: 16px;
+  height: 216px;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.doubleCell {
+  box-sizing: border-box;
+  width: 428px;
+  height: 214px;
+  padding: 16px 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.trippleCell {
+  /* border: 1px solid red; */
+  box-sizing: border-box;
+  width: 642px;
+  height: 214px;
+  padding: 16px 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.page.stage1 .doubleCell {
+  background: linear-gradient(90deg, transparent, #f2f2f5, transparent);
+}
+
+.page.stage2 .doubleCell {
+  /* background: linear-gradient(90deg, transparent, #000, transparent); */
+}
+
+.alignRight {
+  text-align: right;
+}
+
+.alignBottom {
+  margin-top: auto;
+}
+
+.arrowLeft {
+  cursor: pointer;
+  color: #bb274d;
+  font-style: italic;
+  letter-spacing: 2px;
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  font-weight: 500;
+  margin-top: 16px;
+}
+
+.arrowLeft:before {
+  content: '';
+  display: block;
+  border-top: 1px solid #bb274d;
+  width: 50px;
+  margin-right: 10px;
+}
+
+.arrowLeft:after {
+  content: '';
+  display: block;
+  border: 1px solid #bb274d;
+  border-width: 0 0 1px 1px;
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  left: 0;
+  transform: rotate(45deg);
+}
+
+.arrowRight {
+  cursor: pointer;
+  color: #e22151;
+  font-style: italic;
+  letter-spacing: 2px;
+  display: inline-flex;
+  flex-direction: row-reverse;
+  position: relative;
+  align-items: center;
+  font-weight: 500;
+  margin-top: 16px;
+  margin-left: 40px;
+}
+
+.arrowRight:before {
+  content: '';
+  display: block;
+  border-top: 1px solid #bb274d;
+  width: 50px;
+  margin-left: 10px;
+}
+
+.arrowRight:after {
+  content: '';
+  display: block;
+  border: 1px solid #bb274d;
+  border-width: 1px 1px 0 0 ;
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  right: 0;
+  transform: rotate(45deg);
+}
+
+.arrowLeft.inactive,
+.arrowRight.inactive {
+  color: #8f8b9c;
+}
+.arrowLeft.inactive:before,
+.arrowRight.inactive:before,
+.arrowLeft.inactive:after,
+.arrowRight.inactive:after,
+.arrowLeft.inactive span:after,
+.arrowRight.inactive span:after {
+  border-color: #8f8b9c;
+}
+
+.arrowLeft span,
+.arrowRight span {
+  position: relative;
+}
+.arrowLeft span:after,
+.arrowRight span:after {
+  content: '';
+  position: absolute;
+  inset: auto 100% -3px 0;
+  border-bottom: 1px solid #bb274d;
+  transition: right ease-in-out 200ms;
+}
+.arrowLeft:hover span:after,
+.arrowRight:hover span:after {
+  right: 0;
+}
+
+.row {
+  display: flex;
+  align-items: middle;
+}
+
+.topMargin {
+  margin-top: 40px;
+}
+
+
+.char {
+  opacity: 0;
+  transition: opacity ease-in 500ms;
+}
+.socialLink {
+  margin-top: 24px;
+  margin-left: 16px;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  background-color: #000;
+  z-index: 1000000000;
+  pointer-events: none;
+}
