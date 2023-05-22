@@ -194,14 +194,14 @@ const StageOne = ({ config, setStage }) => {
 const StageTwo = ({ config, setStage, stage }) => {
   const { camera, viewport, scene } = useThree()
 
-  camera.zoom = config.zoom;
-  camera.updateProjectionMatrix();
 
   const materialPoperties = config;
   materialPoperties.ior = 0.5;
   materialPoperties.color = new THREE.Color('#46e3cb')
 
   useEffect(() => {
+    camera.zoom = config.zoom;
+    camera.updateProjectionMatrix();
     const scrollElement = document.getElementsByTagName('canvas')[0].nextSibling
     if (stage === 3) {
       scrollElement.scrollTo({ top: 2000, left: 0, behavior: 'smooth' })
@@ -324,15 +324,14 @@ function StageFour({ config, setStage }) {
   const materialPoperties = config;
   materialPoperties.ior = 0
 
-  camera.zoom = config.zoom;
-  camera.updateProjectionMatrix();
+  // camera.zoom = config.zoom;
+  // camera.updateProjectionMatrix();
 
   useFrame(() => {
     gsap.to(material.current, {
       ior: 0.6,
       duration: 5,
       ease: "power3.out",
-      delay: 0.5
     });
     gsap.to(background.current.rotation, {
       x: mouse.y > 0 ? -0.8 : -1,
@@ -380,8 +379,8 @@ function StageFour({ config, setStage }) {
 
 const StageFive = ({ config, setStage, stage }) => {
   const { camera } = useThree()
-  camera.zoom = config.zoom;
-  camera.updateProjectionMatrix();
+  // camera.zoom = config.zoom;
+  // camera.updateProjectionMatrix();
 
   return (
     <>
