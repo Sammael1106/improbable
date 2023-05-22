@@ -2,32 +2,27 @@
 
 import styles from './improbable.module.css'
 import { clsx } from 'clsx';
-import { resolve } from 'path';
-
 
 import raw_texture from '@/public/hdr/aerodynamics_workshop_1k.hdr'
 
 import React, { useRef, useEffect, useState } from 'react'
 import * as THREE from 'three';
-import { Leva, useControls } from 'leva'
+import { useControls } from 'leva'
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
-import { Canvas, useLoader, useFrame, useThree } from '@react-three/fiber'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import {
   Center,
   Html,
   Float,
   useGLTF,
-  Plane,
   useCursor,
   Instances,
   Environment,
   Lightformer,
-  OrbitControls,
   RandomizedLight,
   AccumulativeShadows,
   MeshTransmissionMaterial,
   ScrollControls,
-  Scroll,
   useScroll,
   Image
 } from '@react-three/drei'
@@ -59,9 +54,8 @@ export default function Home() {
 
   const [stage, setStage] = useState(1)
 
-  const texture = new RGBELoader().load(raw_texture, (texture) => {
-    config.background = texture
-  })
+  const texture = new RGBELoader().load(raw_texture)
+  config.background = texture
 
   const overlay = useRef()
 
@@ -76,6 +70,9 @@ export default function Home() {
   }, [stage])
 
   const changeStage = (newstage) => {
+    console.log(overlay.current)
+    overlay.current.classList = []
+    overlay.current.classList.add(`from-stage${stage}-to-stage${newstage}`)
     gsap.to(overlay.current.style, {
       opacity: 1,
       duration: 0.3,
@@ -119,7 +116,7 @@ export default function Home() {
           </AccumulativeShadows>
         </Canvas>
       </div>
-      <div ref={overlay} className={styles.overlay}></div>
+      <div ref={overlay} id={styles.overlay}></div>
       <div className={clsx(stageClass, styles.pageIndicator)}>
         <div className={styles.pageIndicatorProgress} style={{width: `${stage*20}%`}}></div>
       </div>
@@ -136,6 +133,9 @@ const StageOne = ({ config, setStage }) => {
   const materialPoperties = config;
   const iorLimits = [0.6, 0]
   useCursor(hovered)
+
+  // camera.zoom = config.zoom;
+  // camera.updateProjectionMatrix();
 
   useEffect(() => {
     gsap.to(material.current, {
@@ -164,11 +164,11 @@ const StageOne = ({ config, setStage }) => {
       <color attach="background" args={['#f2f2f5']} />
       <Grid />
 
-      <Html position={[-6, 0, -6]} className={styles.cell} distanceFactor={0.014}>
+      <Html position={[-6, 0, -6]} className={styles.cell} distanceFactor={0.01555}>
         <h1 className={`${styles.heading} ${styles.alignRight} ${styles.alignBottom}`}><Heading>I'm Ready for the <span className={styles.emph}>Metaverse</span></Heading></h1>
       </Html>
 
-      <Html position={[3, 0, 0]} className={styles.doubleCell} distanceFactor={0.014}>
+      <Html position={[3, 0, 0]} className={styles.doubleCell} distanceFactor={0.01555}>
         <p>Welcome! I'm <span className={styles.emph}>Daria Yudina</span>, a Technical Art Generalist with a passion for virtual worlds and an extensive background in web development, visual design, and 3D artistry.</p>
         <div className={styles.arrowLeft} onClick={() => setClicked(true)}><span>let's dive deeper</span></div>
       </Html>
@@ -300,8 +300,8 @@ const ScrollableGroups = ({materialPoperties}) => {
       </group>
 
       <group ref={imagesGroup}>
-        <Image url="improbable/bug.png" rotation={[Math.PI/-2, 0, 0]} scale={8}  position={[-4, -5, viewport.height/2]} transparent={true} opacity={0}/>
-        <Image url="improbable/vscode.png" rotation={[Math.PI/-3, 0, 1]} scale={10} position={[-8, -8, viewport.height/-2 + 3]} transparent={true} opacity={0}/>
+        <Image url="images/bug.png" rotation={[Math.PI/-2, 0, 0]} scale={8}  position={[-4, -5, viewport.height/2]} transparent={true} opacity={0}/>
+        <Image url="images/vscode.png" rotation={[Math.PI/-3, 0, 1]} scale={10} position={[-8, -8, viewport.height/-2 + 3]} transparent={true} opacity={0}/>
       </group>
     </>
   )
@@ -343,7 +343,7 @@ function StageFour({ config, setStage }) {
 
   return (
     <group dispose={null}>
-      <Html position={[-6.7, 0, -6.2]} className={styles.cell}>
+      <Html position={[-6, 0, -6]} className={styles.cell}>
         <h1 className={`${styles.heading} ${styles.alignRight} ${styles.alignBottom}`}>Why Improbable?</h1>
       </Html>
 
@@ -395,20 +395,19 @@ const StageFive = ({ config, setStage, stage }) => {
         <div className={styles.row}>
           <div className={`${styles.arrowLeft} ${styles.inactive}`} style={{marginRight: 24}} onClick={() => setStage(4)}><span>Back</span></div>
           <a target='_blank' href="https://www.linkedin.com/in/sammael1106/" className={styles.socialLink}>
-            <img src="improbable/linkedin-boerder-svgrepo-com.svg" width={32} height={32}/>
+            <img src="images/linkedin-boerder-svgrepo-com.svg" width={32} height={32}/>
           </a>
           <a target='_blank' href="https://www.behance.net/sammael1106" className={styles.socialLink}>
-            <img src="improbable/behance-svgrepo-com.svg" width={32} height={32}/>
+            <img src="images/behance-svgrepo-com.svg" width={32} height={32}/>
           </a>
           <a target='_blank' href="https://www.instagram.com/sammael_art/" className={styles.socialLink}>
-            <img src="improbable/instagram-svgrepo-com.svg" width={32} height={32}/>
+            <img src="images/instagram-svgrepo-com.svg" width={32} height={32}/>
           </a>
           <a target='_blank' href="https://twitter.com/sammael_art" className={styles.socialLink}>
-            <img src="improbable/twitter-svgrepo-com.svg" width={32} height={32}/>
+            <img src="images/twitter-svgrepo-com.svg" width={32} height={32}/>
           </a>
         </div>
       </Html>
-
     </>
   )
 }

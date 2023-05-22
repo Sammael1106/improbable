@@ -37,3 +37,8 @@
 #leva__root {
   display: none !important;
 }
+
+.from-stage2-to-stage3,
+.from-stage3-to-stage2  {
+  display: none !important;
+}
