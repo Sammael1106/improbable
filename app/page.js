@@ -2,11 +2,15 @@
 
 import styles from './improbable.module.css'
 import { clsx } from 'clsx';
+import { resolve } from 'path';
+
+
+import raw_texture from '@/public/hdr/aerodynamics_workshop_1k.hdr'
 
 import React, { useRef, useEffect, useState } from 'react'
 import * as THREE from 'three';
 import { Leva, useControls } from 'leva'
-import { RGBELoader } from 'three-stdlib'
+import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 import { Canvas, useLoader, useFrame, useThree } from '@react-three/fiber'
 import {
   Center,
@@ -54,8 +58,15 @@ export default function Home() {
   })
 
   const [stage, setStage] = useState(1)
-  // const texture = useLoader(RGBELoader, 'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/aerodynamics_workshop_1k.hdr')
-  // config.background = texture
+
+  const texture = new RGBELoader().load(raw_texture, (texture) => {
+    config.background = texture
+  }, () => {
+
+  }, () => {
+    console.error("Unable to load texture")
+  })
+
   const overlay = useRef()
 
   useEffect(() => {
@@ -76,7 +87,6 @@ export default function Home() {
       onComplete: () => setStage(newstage)
     })
   }
-
 
   const stageClass = {
     [styles.stage1]: stage === 1,
