@@ -44,8 +44,8 @@ export default function Home() {
     zoom: zoom, // 65
     backside: true,
     backsideThickness: 0.3,
-    samples: 16,
-    resolution: 1024,
+    samples: 8,
+    resolution: 512,
     transmission: 1,
     clearcoat: 0,
     clearcoatRoughness: 0.0,
